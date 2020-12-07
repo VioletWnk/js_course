@@ -84,6 +84,9 @@ let appData = {
     },
     addExpensesBlock: function(){
         let cloneExpensesItem = expensesItems[0].cloneNode(true);
+        cloneExpensesItem.querySelectorAll('input').forEach(function(item){
+            item.value = '';
+        });
         expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesPlus);
         expensesItems = document.querySelectorAll('.expenses-items');
         if(expensesItems.length === 3){
@@ -92,6 +95,9 @@ let appData = {
     },
     addIncomeBlock: function(){
         let cloneIncomeItem = incomeItem[0].cloneNode(true);
+        cloneIncomeItem.querySelectorAll('input').forEach(function(item){
+            item.value = '';
+        });
         incomeItem[0].parentNode.insertBefore(cloneIncomeItem, incomePlus);
         incomeItem = document.querySelectorAll('.income-items');
         if(incomeItem.length === 3){
