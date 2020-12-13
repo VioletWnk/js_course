@@ -29,44 +29,39 @@ DomElement.prototype.create = function(){
 // domElement.create();
 
 
-// 1) Используя class DomElement из основного задания №1, создать квадрат 100 на 100 пикселей. 
-//Ему необходимо задать фон(background) любого цвета и свойство position: absolute.
 
-let square = new DomElement();
-square.height = '100px';
-square.width = '100px';
-square.bg = '#cc3c72';
-square.position = 'absolute';
+let square = new DomElement('.square', '100px', '100px', '#cc3c72');
 
-console.log(square);
-
-// 2) Поместить его на страницу только после выполнения события DOMContentLoaded. 
-//Внутри тега body  должно быть только подключение скрипта.
 document.addEventListener("DOMContentLoaded", function() {
     square.create();
+    document.querySelector('.square').style.position = 'absolute';
 });
 
 
-// 3) Написать обработчик события для keydown, который будет принимать callback-функцию. Данная функция будет отлавливать 
-//нажатие на стрелки клавиатуры. В зависимости от нажатой кнопки(Вверх - стрелка вверх, Влево - стрелка влево, Вправо - стрелка вправо, 
-//Вниз - стрелка вниз) наш квадрат будет перемещаться на 10 пикселей.
+document.addEventListener('keydown', function(event) {
+    let key = event.key
+    let left = document.querySelector('.square').style.left || '0px',
+        top = document.querySelector('.square').style.top || '0px',
+        leftNum = parseInt(left.slice(0, -2)),
+        topNum = parseInt(top.slice(0, -2));
 
 
-square.addEventListener('keydown', callback);
-
-
-let arrowClick = function() {
-    let key = key
     if(key == 'ArrowLeft'){
-        console.log('psss');
+        leftNum -= 10;
+        document.querySelector('.square').style.left = leftNum + 'px';
+
     } else if (key == 'ArrowRight'){
-        console.log('prrr');
-    } else if (key == 'ArrowUp'){k
-        console.log('pruuuu');
+        leftNum += 10;
+        document.querySelector('.square').style.left = leftNum + 'px';
+      
+    } else if (key == 'ArrowUp'){
+        topNum -= 10;
+        document.querySelector('.square').style.top = topNum + 'px'
     } else if (key == 'ArrowDown'){
-        console.log('pow');
+        topNum += 10;
+        document.querySelector('.square').style.top = topNum + 'px'
     }
-};
+});
 
 
 
