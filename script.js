@@ -60,8 +60,6 @@ const AppData = function(){
     this.moneyDeposit = 0;
 };
 
-const appData = new AppData();
-
     AppData.prototype.check = function(){
         if(salaryAmount.value !== ''){
             start.removeAttribute('disabled');
@@ -105,6 +103,9 @@ const appData = new AppData();
         });
         periodSelect.value = 1;
         periodAmount.innerHTML = periodSelect.value;
+
+        incomePlus.removeAttribute('disabled');
+        expensesPlus.removeAttribute('disabled');
         start.style.display = 'block';
         cancel.style.display = 'none';
    
@@ -236,18 +237,22 @@ const appData = new AppData();
     AppData.prototype.calcPeriod = function(){
         return this.budgetMonth * periodSelect.value;
     };
+    AppData.prototype.eventListeners = function(){
+        start.addEventListener('click', this.start.bind(this));
+        expensesPlus.addEventListener('click', this.addExpensesBlock);
+        incomePlus.addEventListener('click', this.addIncomeBlock);
+        salaryAmount.addEventListener('change', this.check());
+        cancel.addEventListener('click', this.reset.bind(this));
+        
+        periodSelect.addEventListener('input', function(){
+            periodAmount.innerHTML = periodSelect.value;
+        });
+    };
 
 
+    const appData = new AppData();
+    appData.eventListeners();
 
-start.addEventListener('click', appData.start.bind(appData));
-expensesPlus.addEventListener('click', appData.addExpensesBlock);
-incomePlus.addEventListener('click', appData.addIncomeBlock);
-salaryAmount.addEventListener('change', appData.check());
-cancel.addEventListener('click', appData.reset.bind(appData));
-
-periodSelect.addEventListener('input', function(){
-    periodAmount.innerHTML = periodSelect.value;
-});
 
 
 
