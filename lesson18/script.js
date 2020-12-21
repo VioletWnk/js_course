@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded', function(){
     }
 
 
-    countTimer('22 december 2020');
+    countTimer('23 december 2020');
 
 
     //menu
@@ -60,7 +60,19 @@ window.addEventListener('DOMContentLoaded', function(){
 
             const handlerMenu = () => { 
                 menu.classList.toggle('active-menu');
-                
+            };
+
+            const scrollAnchor = (e) => {
+                e.preventDefault();
+                let href = e.target.getAttribute('href');
+
+                const scrollTarget = document.querySelector(href);
+                const elementPosition = scrollTarget.getBoundingClientRect().top;
+
+                    window.scrollBy({
+                        top: elementPosition,
+                        behavior: 'smooth'
+                    });
             };
 
             //     if(!menu.style.transform || menu.style.transform === `translate(-100%)`){
@@ -77,6 +89,7 @@ window.addEventListener('DOMContentLoaded', function(){
         //     menuItem[i].addEventListener('click', handlerMenu);
         // }
         menuItem.forEach((elem) => elem.addEventListener('click', handlerMenu));
+        menuItem.forEach((elem) => elem.addEventListener('click', scrollAnchor));
 
     };
 
