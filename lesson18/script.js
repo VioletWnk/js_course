@@ -60,10 +60,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
             const handlerMenu = () => { 
                 menu.classList.toggle('active-menu');
-                if(menuItem[0]){
-                    
-                }
-            
+                
             };
 
             //     if(!menu.style.transform || menu.style.transform === `translate(-100%)`){
