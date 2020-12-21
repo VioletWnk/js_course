@@ -32,5 +32,5 @@ const todayDay = ['Воскресенье', 'Понедельник', 'Втор�
 body.innerHTML += `
 <p>${currentStage}</p>
 <p>Сегодня: ${todayDay[day]}</p>
-<p>Текущее время: ${date.toLocaleString("ru", options)} </p>
+<p>Текущее время: ${date.toLocaleString("ru", options)} PM</p>
 <p>До нового года осталось ${remainingDays} дней</p>`;
