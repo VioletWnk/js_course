@@ -53,7 +53,7 @@ window.addEventListener('DOMContentLoaded', function(){
     //menu
 
     const toggleMenu = () => {
-        const btnMenu = document.querySelector('.menu'),
+        const body = document.querySelector('body'),
             menu = document.querySelector('menu');
 
 
@@ -75,20 +75,22 @@ window.addEventListener('DOMContentLoaded', function(){
             };
 
         
-        menu.addEventListener('click', (event) => {
-            let target = event.target;
+            body.addEventListener('click', (event) => {
+                let target = event.target;
 
-            if(target.classList.contains('close-btn')){
-                handlerMenu();
-            } else if(target.matches('a')){
-                handlerMenu();
-                scrollAnchor(event);
-            }
+                if(target.closest('.menu') || target.matches('.close-btn')){
+                    handlerMenu();
+                } else if(target.matches('a') && target.closest('menu')){
+                    handlerMenu();
+                    scrollAnchor(event);
+                } else { 
+                    if(!target.closest('menu') && menu.classList.contains('active-menu')){
+                        handlerMenu();
+                    }
+                }
 
-        });
+            });
 
-
-        btnMenu.addEventListener('click', handlerMenu);
     };
 
     toggleMenu();
