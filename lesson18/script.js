@@ -321,11 +321,11 @@ window.addEventListener('DOMContentLoaded', function(){
 
     const calc = (price = 100) => {
         const calcBlock = document.querySelector('.calc-block'),
-        calcType = document.querySelector('.calc-type'),
-        calcSquare = document.querySelector('.calc-square'),
-        calcDay = document.querySelector('.calc-day'),
-        calcCount = document.querySelector('.calc-count'),
-        totalValue = document.getElementById('total');
+            calcType = document.querySelector('.calc-type'),
+            calcSquare = document.querySelector('.calc-square'),
+            calcDay = document.querySelector('.calc-day'),
+            calcCount = document.querySelector('.calc-count'),
+            totalValue = document.getElementById('total');
 
         const countSum = () => {
             let total = 0,
@@ -348,7 +348,20 @@ window.addEventListener('DOMContentLoaded', function(){
                     total = price * squareValue * typeValue * countValue * dayValue;
                 }
 
-            totalValue.textContent = Math.ceil(total);
+                const updateCount = () => {
+                    let count = +totalValue.textContent;
+                    const step = 200;
+    
+                    let inc = total / step; 
+                    if (count < total) {
+                        totalValue.textContent = Math.ceil(count + inc);
+                        setTimeout(updateCount, 1);
+                    } 
+                    else {
+                        totalValue.textContent = Math.ceil(total)
+                    }
+                };
+                updateCount();
         };
 
         calcBlock.addEventListener('input', (event) => {
