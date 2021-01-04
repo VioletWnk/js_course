@@ -25,7 +25,7 @@ class Todo {
         li.classList.add('todo-item');
         li.key = todo.key;
         li.insertAdjacentHTML('beforeend', `
-				<span class="text-todo">${todo.value}</span>
+				<span class="text-todo" contenteditable="true">${todo.value}</span>
                 <div class="todo-buttons">
                     <button class="todo-edit"></button>
 					<button class="todo-remove"></button>
@@ -76,8 +76,13 @@ class Todo {
        
     }
 
-    editItem() {
-        console.log('edit');
+    editItem(li) {
+        let span = li.querySelector('span');
+        span.setAttribute('contenteditable', true);
+        console.log(span);
+    //     let item = this.todoData.get(li.key);
+    //     // item.value = 
+    //     this.todoData.set(li.key, item);
     }
 
     handler() {
@@ -89,7 +94,11 @@ class Todo {
             } else if(target.matches('.todo-remove')) {
                 this.deleteItem(target.closest('li'));
             } else if(target.matches('.todo-edit')) {
-                this.editItem(target.closest('li'));
+                //this.editItem(target.closest('li'));
+                // let li = target.closest('li');
+                // let span = li.querySelector('span');
+                // console.log(span);
+                // span.setAttribute('contenteditable', true);
             }
             this.render();
        }

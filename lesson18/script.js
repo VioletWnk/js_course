@@ -96,6 +96,8 @@ window.addEventListener('DOMContentLoaded', function(){
     toggleMenu();
 
     //popup
+  
+
 
     const togglePopUp = () => {
         const popup = document.querySelector('.popup'),
@@ -274,6 +276,47 @@ window.addEventListener('DOMContentLoaded', function(){
     };
 
     slider();
+
+    //our team 
+
+    const changeImage = () => {
+        const command = document.querySelector('#command');
+        const changeImg = (event) => {
+            if(event.target.matches('.command__photo')){
+                let image = event.target.getAttribute('data-img'),
+                    src = event.target.getAttribute('src');
+                    event.target.setAttribute('src', image);
+                    event.target.setAttribute('data-img', src);
+            }
+        };
+
+        
+        command.addEventListener('mouseover', (event) => {
+            changeImg(event);
+        });
+
+        command.addEventListener('mouseout', (event) => {
+            changeImg(event);
+        });
+
+    };
+
+    changeImage();
+
+    //input verification
+    const validateInput = () => {
+
+        const inputs = document.querySelector('.calc-block');
+        inputs.addEventListener('input', (event) => {
+            if(event.target.matches('input')){
+                let inputVer = event.target.value.match(/\d+/);
+                event.target.value = inputVer;
+                console.log(inputVer);
+            }  
+        });
+    };
+
+    validateInput();
 
 
 });
